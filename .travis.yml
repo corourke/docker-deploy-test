@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t corourke/docker-deploy-test -f Dockerfile.dev .
+
+script:
+  - docker run corourke/docker-deploy-test npm run test -- --coverage
