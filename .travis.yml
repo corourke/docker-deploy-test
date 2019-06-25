@@ -9,3 +9,16 @@ before_install:
 
 script:
   - docker run corourke/docker-deploy-test npm test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-deploy-test"
+  env: "DockerDeployTest-env"
+  bucket_name: "elasticbeanstalk-us-east-2-045586879042"
+  bucket_path: "docker-deploy-test"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
