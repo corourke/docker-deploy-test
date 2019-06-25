@@ -1,9 +1,12 @@
 sudo: required
+language: node_js
 services:
   - docker
+env:
+  - CI:true
 
 before_install:
   - docker build -t corourke/docker-deploy-test -f Dockerfile.dev .
 
 script:
-  - docker run corourke/docker-deploy-test npm test --watchAll=false --coverage
+  - docker run corourke/docker-deploy-test npm test
